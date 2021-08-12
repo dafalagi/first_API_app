@@ -9,7 +9,7 @@
                 $q = rawurlencode($data);
                 
                 //Its different for all users
-                $myApiKey = 'AIzaSyBKx40_0ZLW8LU0lgxQx2n_a_s9gvCZj1Y';
+                $myApiKey = '[KEY]';
                 $googleApi =
                     'https://www.googleapis.com/youtube/v3/search?q='
                     . $q . '&key=' . $myApiKey . '&part=snippet&maxResults=10';
@@ -35,7 +35,7 @@
         }
 
         public function searchTitle($q) {
-            $key = "4b8bc985";
+            $key = "[KEY]";
             $title = rawurlencode($q);
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
@@ -68,7 +68,7 @@
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt_array($curl, [
-                CURLOPT_URL => "https://imdb-api.com/en/API/Title/k_qm0ghu3m/$id/",
+                CURLOPT_URL => "https://imdb-api.com/en/API/Title/[KEY]/$id/",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_ENCODING => "",
@@ -96,7 +96,35 @@
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt_array($curl, [
-                CURLOPT_URL => "https://imdb-api.com/en/API/InTheaters/k_qm0ghu3m",
+                CURLOPT_URL => "https://imdb-api.com/en/API/InTheaters/[KEY]",
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_ENCODING => "",
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 30,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => "GET",
+            ]);
+
+            $json = curl_exec($curl);
+            $response = json_decode($json, true);
+            $err = curl_error($curl);
+
+            curl_close($curl);
+
+            if ($err) {
+                echo "cURL Error #:" . $err;
+                return $errMsg = "ERROR";
+            }else {
+                return $response;
+            }
+        }
+
+        public function compressImg($img) {
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt_array($curl, [
+                CURLOPT_URL => "http://api.resmush.it/ws.php?img=$img",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_ENCODING => "",
