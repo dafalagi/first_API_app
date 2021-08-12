@@ -18,8 +18,11 @@
 		<div class="carousel-item active">
 			<img src="<?php 
                 $id = $item[0]["id"];
-                $img = $apiObj->searchDetail($id);
-                echo $img = $img["image"]; 
+                $res = $apiObj->searchDetail($id);
+                $compress = $res["image"]; 
+                $res = $apiObj->compressImg($compress);
+                $img = $res["dest"];
+                echo $img;
             ?>" alt="">
 			<div class="carousel-caption">
                 <h1 class="display-2">Welcome!</h1>
@@ -29,8 +32,10 @@
         <?php 
             for ($i = 1; $i < $max; $i++) {
                 $id = $item[$i]["id"];
-                $img = $apiObj->searchDetail($id);
-                $img = $img["image"];
+                $res = $apiObj->searchDetail($id);
+                $compress = $res["image"]; 
+                $res = $apiObj->compressImg($compress);
+                $img = $res["dest"];
         ?>
 		<div class="carousel-item">
 			<img src="<?php echo $img ?>" alt="">
@@ -138,7 +143,9 @@
             for ($i = 0; $i < 3; $i++) {
                 $id = $item[$i]["id"];
                 $res = $apiObj->searchDetail($id);
-                $img = $res["image"];
+                $compress = $res["image"]; 
+                $res = $apiObj->compressImg($compress);
+                $img = $res["dest"];
                 $title = $res["fullTitle"];
                 $plot = $res["plot"];
         ?>
@@ -158,7 +165,9 @@
             for ($i = 3; $i < 6; $i++) {
                 $id = $item[$i]["id"];
                 $res = $apiObj->searchDetail($id);
-                $img = $res["image"];
+                $compress = $res["image"]; 
+                $res = $apiObj->compressImg($compress);
+                $img = $res["dest"];
                 $title = $res["fullTitle"];
                 $plot = $res["plot"];
         ?>

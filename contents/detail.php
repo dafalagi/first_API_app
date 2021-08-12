@@ -1,5 +1,7 @@
 <?php
-    $img = $res["image"];
+    $compress = $res["image"]; 
+    $fix = $apiObj->compressImg($compress);
+    $img = $fix["dest"];
     $title = $res["fullTitle"];
     $year = $res["year"];
     $date = $res["releaseDate"];
@@ -94,7 +96,9 @@
     <div class="row padding">
         <?php
             for ($i = 0; $i < 3; $i++) {
-                $img = $similars[$i]["image"];
+                $compress = $similars[$i]["image"];
+                $res = $apiObj->compressImg($compress);
+                $img = $res["dest"];
         ?>
 		<div class="col-md-4">
 			<div class="card">

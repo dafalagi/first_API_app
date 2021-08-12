@@ -3,9 +3,14 @@ include_once('../controller/API.php');
 
 $apiObj = new API();
 
-$q = "https://imdb-api.com/images/original/MV5BNDYxNjQyMjAtNTdiOS00NGYwLWFmNTAtNThmYjU5ZGI2YTI1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_Ratio0.6791_AL_.jpg";
-$res = $apiObj->compressImg($q);  
-echo "<pre>";
-print_r($res);
-?>
+$data = $apiObj->nowShowing();
+    $item = $data["items"];
+    $id = $item[0]["id"];
+                $imgOg = $apiObj->searchDetail($id);
+                $compress = $imgOg["image"]; 
+                $res = $apiObj->compressImg($compress);
+                $img = $res["dest"];
+    echo "<pre>";
+    print_r($data);
+?>>
 
