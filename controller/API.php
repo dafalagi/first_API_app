@@ -9,7 +9,7 @@
                 $q = rawurlencode($data);
                 
                 //Its different for all users
-                $myApiKey = '[KEY]';
+                $myApiKey = 'AIzaSyBKx40_0ZLW8LU0lgxQx2n_a_s9gvCZj1Y';
                 $googleApi =
                     'https://www.googleapis.com/youtube/v3/search?q='
                     . $q . '&key=' . $myApiKey . '&part=snippet&maxResults=10';
@@ -35,7 +35,7 @@
         }
 
         public function searchTitle($q) {
-            $key = "[KEY]";
+            $key = "4b8bc985";
             $title = rawurlencode($q);
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
@@ -68,7 +68,7 @@
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt_array($curl, [
-                CURLOPT_URL => "https://imdb-api.com/en/API/Title/[KEY]/$id/",
+                CURLOPT_URL => "https://imdb-api.com/en/API/Title/k_qm0ghu3m/$id/",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_ENCODING => "",
@@ -96,7 +96,7 @@
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt_array($curl, [
-                CURLOPT_URL => "https://imdb-api.com/en/API/InTheaters/[KEY]",
+                CURLOPT_URL => "https://imdb-api.com/en/API/InTheaters/k_qm0ghu3m",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_ENCODING => "",
