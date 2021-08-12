@@ -96,7 +96,7 @@
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt_array($curl, [
-                CURLOPT_URL => "https://imdb-api.com/en/API/InTheaters/k_qm0ghu3m",
+                CURLOPT_URL => "https://imdb-api.com/en/API/InTheaters/[KEY]",
                 CURLOPT_RETURNTRANSFER => true,
                 CURLOPT_FOLLOWLOCATION => true,
                 CURLOPT_ENCODING => "",
