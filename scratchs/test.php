@@ -1,16 +1,21 @@
 <?php
-include_once('../controller/API.php');
+$ch = curl_init();
 
-$apiObj = new API();
+curl_setopt($ch, CURLOPT_URL, 'https://v2.convertapi.com/convert/jpg/to/webp?Secret=ewcp8KOU5rfx9aKO');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+$post = array(
+    'File' => 'http://image.tmdb.org/t/p/original/bwBmo4I3fqMsVvVtamyVJHXGnLF.jpg'
+);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 
-$data = $apiObj->nowShowing();
-    $item = $data["items"];
-    $id = $item[0]["id"];
-                $imgOg = $apiObj->searchDetail($id);
-                $compress = $imgOg["image"]; 
-                $res = $apiObj->compressImg($compress);
-                $img = $res["dest"];
-    echo "<pre>";
-    print_r($data);
-?>>
+$result = curl_exec($ch);
+if (curl_errno($ch)) {
+    echo 'Error:' . curl_error($ch);
+}
+curl_close($ch);
+?>
+<img src="<?php echo $result["Files"] ?>" alt="">
+
 

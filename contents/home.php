@@ -1,7 +1,6 @@
 <?php 
-    $data = $apiObj->nowShowing();
-    $item = $data["items"];
-    $max = count($item);
+    $data = $apiObj->nowPlaying();
+    $item = $data["results"];
 ?>
 
 <!--- Image Slider -->
@@ -9,17 +8,16 @@
 	<ul class="carousel-indicators">
 		<li data-target="#slides" data-slide-to="0" class="active"></li>
         <?php 
-            for ($i = 1; $i < $max; $i++) {
+            for ($i = 1; $i < 6; $i++) {
         ?>
 		<li data-target="#slides" data-slide-to="<?php echo $i ?>"></li>
         <?php } ?>
 	</ul>
 	<div class="carousel-inner">
 		<div class="carousel-item active">
-			<img src="<?php 
-                $id = $item[0]["id"];
-                $res = $apiObj->searchDetail($id);
-                $compress = $res["image"]; 
+			<img src="<?php
+                $img = $item[0]["backdrop_path"];
+                $compress = $apiObj->getImg($img);
                 $res = $apiObj->compressImg($compress);
                 $img = $res["dest"];
                 echo $img;
@@ -30,10 +28,9 @@
 			</div>
 		</div>
         <?php 
-            for ($i = 1; $i < $max; $i++) {
-                $id = $item[$i]["id"];
-                $res = $apiObj->searchDetail($id);
-                $compress = $res["image"]; 
+            for ($i = 1; $i < 6; $i++) {
+                $img = $item[$i]["backdrop_path"];
+                $compress = $apiObj->getImg($img); 
                 $res = $apiObj->compressImg($compress);
                 $img = $res["dest"];
         ?>
@@ -98,28 +95,25 @@
 <div class="container-fluid padding" data-aos="fade-up">
     <div class="row">
         <div class="col-lg-6">
-            <form method="POST">
+            <form method="GET">
                 <div class="form-group">
                     <h6>Enter a movie title</h6>
                     <input type="text" class="form-control"
-                    name="judul">
+                    name="title">
                 </div>
-                <button type="submit" class="btn btn-primary" name="cari">Submit</button>
+                <button type="submit" class="btn btn-primary" name="find" value="true">Submit</button>
             </form>
         </div>
         <div class="col-lg-6 popular">
             <h5>10 Most Popular Movies</h5>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">The Suicide Squad</li>
-                <li class="list-group-item">Jungle Cruise</li>
-                <li class="list-group-item">The Green Knight</li>
-                <li class="list-group-item">House of Gucci</li>
-                <li class="list-group-item">F9 : The Fast Saga</li>
-                <li class="list-group-item">Old</li>
-                <li class="list-group-item">Black Widow</li>
-                <li class="list-group-item">Free Guys</li>
-                <li class="list-group-item">Venom : Let There Be Carnage</li>
-                <li class="list-group-item">Suicide Squad</li>
+                <?php
+                    for ($i = 0; $i < 10; $i++) {
+                        $res = $apiObj->popular();
+                        $title = $res["results"][$i]["original_title"];
+                ?>
+                <li class="list-group-item"><?php echo $title ?></li>
+                <?php } ?>
             </ul>
         </div>
     </div>
@@ -141,13 +135,12 @@
 	<div class="row padding" data-aos="fade-up">
         <?php 
             for ($i = 0; $i < 3; $i++) {
-                $id = $item[$i]["id"];
-                $res = $apiObj->searchDetail($id);
-                $compress = $res["image"]; 
-                $res = $apiObj->compressImg($compress);
-                $img = $res["dest"];
-                $title = $res["fullTitle"];
-                $plot = $res["plot"];
+                $img = $item[$i]["poster_path"];
+                $compress = $apiObj->getImg($img); 
+                $fix = $apiObj->compressImg($compress);
+                $img = $fix["dest"];
+                $title = $item[$i]["original_title"];
+                $plot = $item[$i]["overview"];
         ?>
 		<div class="col-md-4">
 			<div class="card">
@@ -163,13 +156,12 @@
 	<div class="row padding" data-aos="fade-up">
         <?php 
             for ($i = 3; $i < 6; $i++) {
-                $id = $item[$i]["id"];
-                $res = $apiObj->searchDetail($id);
-                $compress = $res["image"]; 
-                $res = $apiObj->compressImg($compress);
-                $img = $res["dest"];
-                $title = $res["fullTitle"];
-                $plot = $res["plot"];
+                $img = $item[$i]["poster_path"];
+                $compress = $apiObj->getImg($img); 
+                $fix = $apiObj->compressImg($compress);
+                $img = $fix["dest"];
+                $title = $item[$i]["original_title"];
+                $plot = $item[$i]["overview"];
         ?>
 		<div class="col-md-4">
 			<div class="card">

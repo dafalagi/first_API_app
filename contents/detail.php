@@ -1,26 +1,30 @@
 <?php
-    $compress = $res["image"]; 
+    $img = $res["backdrop_path"];
+    $compress = $apiObj->getImg($img);
     $fix = $apiObj->compressImg($compress);
-    $img = $fix["dest"];
-    $title = $res["fullTitle"];
-    $year = $res["year"];
-    $date = $res["releaseDate"];
-    $runtime = $res["runtimeStr"];
-    $directors = $res["directors"];
-    $writers = $res["writers"];
-    $stars = $res["stars"];
+    $backdrop = $fix["dest"];
+    $img = $res["poster_path"];
+    $compress = $apiObj->getImg($img);
+    $fix = $apiObj->compressImg($compress);
+    $poster = $fix["dest"];
+    $title = $res["original_title"];
+    $date = $res["release_date"];
+    $runtime = $res["runtime"];
+    $companies = $res["production_companies"];
     $genres = $res["genres"];
-    $countries = $res["countries"];
-    $languages = $res["languages"];
-    $contentrating = $res["contentRating"];
-    $rating = $res["imDbRating"];
-    $plot = $res["plot"];
-    $similars = $res["similars"];
+    $countries = $res["production_countries"];
+    $languages = $res["spoken_languages"];
+    $averagevote = $res["vote_average"];
+    $votecount = $res["vote_count"];
+    $status = $res["status"];
+    $plot = $res["overview"];
+    $similardata = $apiObj->getSimilar($id);
+    $similars = $similardata["results"];
 ?>
 
 <!--Jumbotron-->
 <div class="container-fluid padding">
-    <div class="row jumbotron" style="background-image: url(<?php echo $img ?>);">
+    <div class="row jumbotron" style="background-image: url(<?php echo $backdrop ?>);">
     </div>
 </div>
 
@@ -28,33 +32,56 @@
 <div class="container-fluid padding">
     <div class="row">
         <div class="col-lg-2">
-            <img src="<?php echo $img ?>" alt="movie-poster" class="img-thumbnail">
+            <img src="<?php echo $poster ?>" alt="movie-poster" class="img-thumbnail">
         </div>
         <div class="col-lg-5">
             <h5>Title :</h5>
             <p><?php echo $title ?></p>
-            <h5>Year :</h5>
-            <p><?php echo $year ?></p>
             <h5>Release Date :</h5>
             <p><?php echo $date ?></p>
             <h5>Runtime :</h5>
-            <p><?php echo $runtime ?></p>
-            <h5>Directors :</h5>
-            <p><?php echo $directors ?></p>
-            <h5>Writers :</h5>
-            <p><?php echo $writers ?></p>
-            <h5>Stars :</h5>
-            <p><?php echo $stars ?></p>
+            <p><?php echo $runtime ?> mins</p>
             <h5>Genres :</h5>
-            <p><?php echo $genres ?></p>
+            <p><?php
+                $max = count($genres);
+                for ($i = 0; $i < $max; $i++) {
+                    if ($i == $max-1) {
+                        echo $genres[$i]["name"];
+                    }else {
+                        echo $genres[$i]["name"].", ";
+                    }
+                }
+            ?></p>
+            <h5>Production Companies :</h5>
+            <p><?php
+                $max = count($companies);
+                for ($i = 0; $i < $max; $i++) {
+                    if ($i == $max-1) {
+                        echo $companies[$i]["name"];
+                    }else {
+                        echo $companies[$i]["name"].", ";
+                    }
+                }
+            ?></p>
             <h5>Countries :</h5>
-            <p><?php echo $countries ?></p>
+            <p><?php echo $countries[0]["name"] ?></p>
             <h5>Languages :</h5>
-            <p><?php echo $languages ?></p>
-            <h5>Content Rating :</h5>
-            <p><?php echo $contentrating ?></p>
-            <h5>IMDb Rating :</h5>
-            <p><?php echo $rating ?></p>
+            <p><?php
+                $max = count($languages);
+                for ($i = 0; $i < $max; $i++) {
+                    if ($i == $max-1) {
+                        echo $languages[$i]["english_name"];
+                    }else {
+                        echo $languages[$i]["english_name"].", ";
+                    }
+                }
+            ?></p>
+            <h5>Status :</h5>
+            <p><?php echo $status ?></p>
+            <h5>Average Vote :</h5>
+            <p><?php echo $averagevote ?></p>
+            <h5>Vote Count :</h5>
+            <p><?php echo $votecount ?></p>
         </div>
         <div class="col-lg-5">
             <h5>Plot :</h5>
@@ -96,7 +123,23 @@
     <div class="row padding">
         <?php
             for ($i = 0; $i < 3; $i++) {
-                $compress = $similars[$i]["image"];
+                $img = $similars[$i]["poster_path"]; 
+                $compress = $apiObj->getImg($img);
+                $res = $apiObj->compressImg($compress);
+                $img = $res["dest"];
+        ?>
+		<div class="col-md-4">
+			<div class="card">
+				<img src="<?php echo $img ?>" alt="" class="card-img-top">
+			</div>
+		</div>
+        <?php } ?>
+	</div>
+    <div class="row padding">
+        <?php
+            for ($i = 3; $i < 6; $i++) {
+                $img = $similars[$i]["poster_path"]; 
+                $compress = $apiObj->getImg($img);
                 $res = $apiObj->compressImg($compress);
                 $img = $res["dest"];
         ?>
