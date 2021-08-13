@@ -60,7 +60,7 @@
 <!--- Three Column Section -->
 <div class="container-fluid padding">
     <div class="row text-center">
-        <div class="col-xs-12 col-sm-6 col-md-4" data-aos="zoom-in-up" data-aos-duration="1000">
+        <div class="col-xs-12 col-sm-6 col-md-6" data-aos="zoom-in-up" data-aos-duration="1000">
             <img src="https://img.icons8.com/cute-clipart/70/000000/search.png" class="moviesearcher"/>
             <h3>Movie Searcher</h3>
             <p>
@@ -69,7 +69,7 @@
             The main purpose of this website is for my college task but hopefully this will be useful for everyone.
             </p>
         </div>
-        <div class="col-xs-12 col-sm-6 col-md-4" data-aos="zoom-in-up" data-aos-duration="1500">
+        <div class="col-xs-12 col-sm-6 col-md-6" data-aos="zoom-in-up" data-aos-duration="1500">
             <img src="https://img.icons8.com/color/70/000000/youtube-play.png" class="youtube" />
             <h3>Youtube</h3>
             <p>
@@ -78,13 +78,25 @@
             to give more visual information about the movies.
             </p>
         </div>
-        <div class="col-md-4" data-aos="zoom-in-up" data-aos-duration="2000">
+    </div>
+    <div class="row text-center">
+        <div class="col-xs-12 col-sm-6 col-md-6" data-aos="zoom-in-up" data-aos-duration="1500">
             <img src="https://img.icons8.com/color/70/000000/imdb.png" class="imdb" />
             <h3>IMDb</h3>
             <p>
             IMDb (an acronym for Internet Movie Database) is an online database of information related to films, television programs, 
-            home videos, video games, and streaming content online. I'm using this app's API to get detailed information about movies including
-            the stars list, ratings, and similar movies.
+            home videos, video games, and streaming content online. I'm not exactly using this app's API but I'm using OMDb's and TMDb's API.
+            Basically those apps are based on IMDb so that's why I put IMDb here. I'm using their APIs to get detailed information about movies
+            as well as the images.
+            </p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6" data-aos="zoom-in-up" data-aos-duration="2000">
+            <img src="https://img.icons8.com/color/70/000000/image.png" class="compress" />
+            <h3>reSmush.it</h3>
+            <p>
+            reSmush.it is a FREE API that provides image optimization. reSmush.it has been implemented on the most common CMS such as Wordpress, Drupal or Magento.
+            I'm using this app's API to compress the images that I will use here. The purpose is of course to speed up the loading time of this site so I'd really
+            appreciate even if just one sec faster.
             </p>
         </div>
     </div>

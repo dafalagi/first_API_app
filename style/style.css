@@ -139,7 +139,8 @@ iframe {
 
 .moviesearcher,
 .youtube,
-.imdb {
+.imdb,
+.compress {
   margin: 0.8rem;
 }
 

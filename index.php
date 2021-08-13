@@ -23,14 +23,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>First API App</title>
 
+	<!--Animation-->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+	<!--CDN-->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
       integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
       crossorigin="anonymous"
     />
+
+	<!--Custom Style-->
     <link rel="stylesheet" href="style/style.css" />
+
+	<!--Favicon-->
+	<link rel="icon" href="https://img.icons8.com/cute-clipart/36/000000/search.png" type="image/x-icon" />
   </head>
   <body>
 
